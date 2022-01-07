@@ -1,0 +1,241 @@
+:root{
+    --background-color:#c9d9ff;
+    --primary-color:rgb(100, 143, 252);
+    --text-color:#9eb9fe;
+    --shadow-bold:rgb(31, 40, 214);
+}
+
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+body{
+    
+    font-family: 'Poppins', sans-serif;
+}
+
+.container{
+    background-color: var(--background-color);
+    width: 100vw;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+}
+
+.overlay{
+    position: relative;
+    width: 300px;
+    z-index: 2;
+}
+
+.wrapper{
+    border-radius: 10px;
+    box-shadow: 0 1px 6px 2px rgba(100, 143, 252,1);
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.overlay::before{
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    height:10px;
+    width: 230px;
+    z-index: -1;
+    box-shadow: 0 1px 22px 20px rgb(31, 40, 214);
+    border-radius: 50%;
+    
+
+}
+
+.player{
+    /* background-color: var(--primary-color); */
+    padding:0 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.player__header{
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 20px 0;
+    color:white;
+    width: 100%;
+}
+
+.hidden{
+    visibility:hidden;
+}
+
+.player__about{
+    margin:24px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color:white;
+}
+
+
+.player__diskCD{
+    display:flex;
+    width:200px;
+    margin:auto;
+}
+
+
+.player__cd{
+    height: 100%;
+    margin:auto;
+    width: 100%;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+    /* transition: all 0.3s ease-out; */
+}
+
+.controls{
+    background-color: white;
+    color:var(--primary-color);
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+
+}
+
+
+.controls__counter{
+    display: flex;
+    justify-content: space-between;
+    padding:10px 16px 0;
+}
+
+.controls__counter-second{
+    font-size: 12px;
+}
+
+.controls__range{
+    padding:0px 16px;
+    
+}
+
+.controls__range-item{
+    width: 100%;
+    height:4px;
+    cursor: pointer;
+    -webkit-appearance: none;    
+    background-color:var(--background-color);  
+    border-radius: 10px;
+
+}
+
+.controls__range-item::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    height: 10px;
+    width: 10px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+}
+
+
+.controls__list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:16px 16px 24px;
+}
+
+.controls__item{
+    cursor: pointer;
+}
+
+.controls__item-icon{
+    font-size: 20px;
+    color:var(--primary-color)
+}
+
+.btn-play.active,
+.btn-pause.active{
+    display: flex;
+}
+
+.btn-play,
+.btn-pause{
+    display: none;
+    width: 60px;
+    height: 60px;
+    justify-content:center;
+    align-items: center;
+    border-radius: 50%;
+    border:1px solid var(--primary-color);
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+}
+
+.btn-play .controls__item-icon,
+.btn-pause .controls__item-icon{
+    font-size: 32px;
+}
+
+.btn-random,
+.btn-repeat{
+    opacity: 0.6;
+}
+
+.btn-random.active,
+.btn-repeat.active{
+    opacity: 1;
+}
+
+
+.songs__list{
+    padding-left: 0;
+    padding-top: 14px;
+    background-color:var(--background-color);
+
+}
+
+.songs__item{
+    background-color:white;
+    display: flex;
+    padding: 12px 12px;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    margin:6px 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
+}
+
+.songs__item.playing{
+    background-color:var(--background-color)!important;
+    color:white;
+}
+
+
+
+.songs__info{
+    padding:0 12px;
+    display: flex;
+    flex-direction: column;
+    flex:1;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.songs_info-name{
+    margin-bottom:10px ;
+    font-weight: 600;
+}
+
+
+

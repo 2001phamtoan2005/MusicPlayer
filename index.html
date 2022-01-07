@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Music</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile.css">
+</head>
+<body>
+   <div class="container">
+      <div class="overlay">
+        <div class="wrapper" style="background-image: url('Image/snowman_sia.jpg');">
+            <div class="player">
+                <div class="player__header">
+                     <i class="fas fa-bars"></i>
+                     <h3 class="player__header-heading">Now Playing</h3>
+                     <p class="hidden">abc</p>
+                </div>
+                <div class="player__about">
+                    <p class="player__header-name">ten bai hat</p>
+                    <p class="player__header-singer">ten ca si</p>
+                </div>
+                <div class="player__diskCD">
+                    <div class="player__cd" style="background-image: url('Image/leyla_mesto.jpg');"></div>
+                </div>
+                <audio src="Audio/leyLa.mp3" id="audio"></audio>
+            </div>
+            <div class="controls">
+                <div class="controls__counter">
+                    <span class="controls__counter-second time__begin">0.25</span>
+                    <span class="controls__counter-second time__end ">ko biet</span>
+                </div>
+                <div class="controls__range">
+                    <input type="range" name="" id="" class="controls__range-item"  value="0" min="0" max="100" step="0.01">
+                </div>
+                <div class="controls__list">
+                    <div class="controls__item btn-random"><i class="controls__item-icon fas fa-random"></i></div>
+                    <div class="controls__item btn-prev"><i class="controls__item-icon fas fa-backward"></i></div>
+                    <div class="controls__item btn-play active"><i class="controls__item-icon fas fa-play"></i></div>
+                    <div class="controls__item btn-pause"><i class="controls__item-icon fas fa-pause"></i></div>
+                    <div class="controls__item btn-next"><i class="controls__item-icon fas fa-forward"></i></div>
+                    <div class="controls__item btn-repeat"><i class="controls__item-icon fas fa-sync-alt"></i></div>
+                </div>
+            </div>
+        </div>
+        <ul class="songs__list">
+        </ul>
+      </div>
+   </div>
+</body> 
+    <script src="playerMusic.js" ></script>
+</html>
