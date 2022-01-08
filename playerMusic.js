@@ -26,7 +26,6 @@ const timeStart =$('.time__begin');
 const timeEnd =$('.time__end');
 
 
-
 // xö lý scroll
 const app={
     // declare varible 
@@ -78,6 +77,24 @@ const app={
             image:"Image/youdontknowme.jpg",
             audio:"Audio/youDontKnowMe.mp3"
         },
+        {
+            name:"Chúng Ta Của Hiện Tại",
+            singer:"Sơn Tùng MTP",
+            image:"Image/chungtacuahientai.jpg",
+            audio:"Audio/chungTaCuaHienTai.mp3"
+        },
+        {
+            name:"Enemy",
+            singer:"Imagine,Dragons,JID",
+            image:"Image/arcane_enemy.jpg",
+            audio:"Audio/Enemy__Imagine_Dragons_JID.mp3"
+        },
+        {
+            name:"Mang Tiền Về Cho Mẹ",
+            singer:"Đen",
+            image:"Image/mangtienvechome.jpg",
+            audio:"Audio/MangTienVeChoMe__Den_NguyenThao.mp3"
+        },
     ],
 
     // define properties
@@ -104,10 +121,12 @@ const app={
                             <div class="songs__info">
                                 <span class="songs_info-name">${song.name}</span>
                                 <span class="songs_info-singer">${song.singer}</span>
-                            </div>
+                                </div>
+                                <span class="songs__option">...</span>
                             </li>`;
         })
         listSong.innerHTML=htmls.join(' ');
+    
     },
 
     loadCurrentSong:function(){
@@ -116,6 +135,9 @@ const app={
         cd_img.style.backgroundImage = `url('${this.CurrentSong.image}')`;
         wrapper.style.backgroundImage= `url('${this.CurrentSong.image}')`;
         audio.src=this.CurrentSong.audio;
+        const songs__list= $$('.songs__item');
+        this.activeSong(this.currentIndex,songs__list);
+
     },
 
     scroll:function(){
@@ -201,6 +223,7 @@ const app={
                 app.nextSong();
 
             }
+            _this.scrollIntoViewSong();
             audio.play();
         }
 
@@ -212,6 +235,7 @@ const app={
             else{
                 app.prevSong();
             }
+            _this.scrollIntoViewSong();
             audio.play();
         }
 
@@ -236,45 +260,78 @@ const app={
 
         // play when click any song
         const songs__list= $$('.songs__item');
-        console.log(songs__list);
         for(let i=0;i<songs__list.length;i++){
-            songs__list[i].onclick=function(){
-                console.log(_this.songs[i].name);
-                if(_this.currentIndex!=i){
-                    for(var songs__item of songs__list){
-                        songs__item.classList.remove('playing');
-                    }
-                    _this.currentIndex=i;
-                    _this.loadCurrentSong();
-                }
-                songs__list[i].classList.add('playing');
+           _this.clickSong(i,songs__list);
+        }
+    },
+
+    scrollIntoViewSong: function(){ 
+        setTimeout(()=>{
+            var typeBlock ='end';
+            if(this.currentIndex > 3){
+                typeBlock='nearest';
+            }
+            $('.songs__item.playing').scrollIntoView({
+                behavior:"smooth",
+                block:`${typeBlock}`
+            });
+            console.log( $('.songs__item.playing'));
+        },200);
+    },
+    activeSong : function(index,songs__list){
+            for(var songs__item of songs__list){
+                songs__item.classList.remove('playing');
+            }
+            songs__list[index].classList.add('playing');
+    },
+
+    clickSong : function(index,songs__list){
+        _this=this;
+        songs__list[index].onclick=function(e){
+            const getSongNotPlaying=e.target.closest('.songs__item:not(.playing)') ;
+            const getOption=e.target.closest('.songs__option');
+            if(getSongNotPlaying && !getOption){
+                _this.currentIndex=index;
+                _this.activeSong(_this.currentIndex,songs__list);
+                _this.loadCurrentSong();
                 audio.play();
+            }
+
+            if(getOption){
+               alert('mốt rãnh làm tiếp');
             }
         }
     },
 
     nextSong : function (){
+        
+        const songs__list= $$('.songs__item');
         this.currentIndex++;
         if(this.currentIndex >= this.songs.length){
             this.currentIndex=0;
         }
+        this.activeSong(this.currentIndex,songs__list);
         this.loadCurrentSong();
 
     },
     prevSong : function (){
+        const songs__list= $$('.songs__item');
         this.currentIndex--;
         if(this.currentIndex < 0){
             this.currentIndex=this.songs.length - 1;
         }
+        this.activeSong(this.currentIndex,songs__list);
         this.loadCurrentSong();
     },
 
     randDomSong:function(){
+        const songs__list= $$('.songs__item');
         let randomIndex;
         do{
             randomIndex=Math.floor(Math.random()*this.songs.length);
         }while(randomIndex==this.currentIndex);
         this.currentIndex=randomIndex;
+        this.activeSong(this.currentIndex,songs__list);
         this.loadCurrentSong();
     },
 
